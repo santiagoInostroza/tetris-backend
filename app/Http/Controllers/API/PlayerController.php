@@ -56,7 +56,7 @@ class PlayerController extends Controller{
             return response()->json([
                 'success' => false,
                 'message' => 'Player not found'
-            ], 404);
+            ], 200);
         }
     }
 
