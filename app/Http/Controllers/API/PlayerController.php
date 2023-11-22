@@ -53,7 +53,10 @@ class PlayerController extends Controller{
             $player = Player::findOrFail($id);
             return response()->json($player);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Player not found'], 404);
+            return response()->json([
+                'success' => false,
+                'message' => 'Player not found'
+            ], 404);
         }
     }
 
