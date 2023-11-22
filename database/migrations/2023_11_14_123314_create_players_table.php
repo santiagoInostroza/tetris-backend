@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->integer('level')->nullable();
+            $table->string('country_flag')->nullable();
             $table->timestamps();
         });
     }

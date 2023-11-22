@@ -30,10 +30,12 @@ class PlayerController extends Controller{
             'score' => 'required|numeric',
             'time' => 'required',
             'difficulty' => 'required',
-            'country' => 'required',
-            'city' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
+            'country' => 'nullable',
+            'city' => 'nullable',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable',
+            'country_flag' => 'nullable',
+
         ]);
     
         $player = Player::create($validatedData);
