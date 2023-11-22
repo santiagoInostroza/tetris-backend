@@ -50,7 +50,7 @@ class PlayerController extends Controller{
     public function show($id)
     {
         try {
-            $player = Player::findOrFail($id);
+            $player = Player::where('player_id', $id)->firstOrFail();
             return response()->json($player);
         } catch (ModelNotFoundException $e) {
             return response()->json([
