@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use App\Models\Player;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PlayerController extends Controller{
     
@@ -35,7 +36,7 @@ class PlayerController extends Controller{
             'latitude' => 'nullable',
             'longitude' => 'nullable',
             'country_flag' => 'nullable',
-
+            'player_id' => 'required',
         ]);
     
         $player = Player::create($validatedData);
@@ -46,9 +47,14 @@ class PlayerController extends Controller{
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        try {
+            $player = Player::findOrFail($id);
+            return response()->json($player);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Player not found'], 404);
+        }
     }
 
     /**

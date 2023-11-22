@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('longitude')->nullable();
             $table->integer('level')->nullable();
             $table->string('country_flag')->nullable();
+            $table->string('player_id');
+
             $table->timestamps();
         });
     }
