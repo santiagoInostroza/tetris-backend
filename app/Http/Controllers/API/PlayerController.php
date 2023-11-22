@@ -10,8 +10,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class PlayerController extends Controller{
     
     public function index(Request $request){
-        // all player order by score los 3 mejores
-        // return Player::orderBy('score', 'desc')->take(5)->get();
         $difficulty = $request->query('difficulty');
         $quantity = $request->query('quantity', 10); // Valor por defecto de 10
 
@@ -19,6 +17,7 @@ class PlayerController extends Controller{
                             return $query->where('difficulty', $difficulty);
                         })
                         ->limit($quantity)
+                        ->orderBy('score', 'desc')
                         ->get();
 
         //  response()->json($players);
