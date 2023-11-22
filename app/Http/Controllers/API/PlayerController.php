@@ -47,16 +47,13 @@ class PlayerController extends Controller{
     /**
      * Display the specified resource.
      */
-    public function show($id)
-    {
-        try {
-            $player = Player::where('player_id', $id)->firstOrFail();
-            return response()->json($player);
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Player not found'
-            ], 200);
+    public function show($id){
+        $player = Player::where('player_id', $id)->first();
+
+        if ($player) {
+            return response()->json($player, 200); // Jugador encontrado, devuelve 200 y los datos
+        } else {
+            return response()->json(['message' => 'Jugador no encontrado'], 404); // Jugador no encontrado, devuelve 404
         }
     }
 
